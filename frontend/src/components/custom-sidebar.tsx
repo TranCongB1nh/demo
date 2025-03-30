@@ -14,15 +14,7 @@ import {
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { UserDropdownMenu } from "@/components/ui/dropdown-menu";
 import {
   Sidebar,
   SidebarContent,
@@ -218,98 +210,8 @@ export function CustomSidebar() {
           <MessageSquare className="h-5 w-5" />
           {!collapsed && <span>Feedback</span>}
         </Button>
-
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant="ghost"
-              className="w-full justify-start gap-3 px-4 py-2 h-auto rounded-none text-zinc-300 hover:text-white hover:bg-zinc-800 flex items-center"
-            >
-              <Avatar className="h-8 w-8">
-                <AvatarImage src="/placeholder.svg?height=32&width=32" />
-                <AvatarFallback className="bg-zinc-700 text-zinc-300">
-                  CT
-                </AvatarFallback>
-              </Avatar>
-              {!collapsed && <span className="text-sm">{currentUser?.username || "Guest"}</span>}
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent
-            className="w-64 bg-zinc-900 border-zinc-800 text-zinc-300"
-            align="start"
-            sideOffset={0}
-          >
-            <div className="px-4 py-3 border-b border-zinc-800">
-              <p className="font-medium">{currentUser?.username || "Guest"}</p>
-              <p className="text-xs text-zinc-500">{currentUser?.email || "No email available"}</p>
-            </div>
-
-            <DropdownMenuItem className="px-4 py-2 focus:bg-zinc-800 focus:text-white cursor-pointer flex justify-between">
-              <span>Profile</span>
-              <span className="text-xs text-zinc-500">⌘P</span>
-            </DropdownMenuItem>
-
-            <DropdownMenuItem className="px-4 py-2 focus:bg-zinc-800 focus:text-white cursor-pointer flex justify-between">
-              <span>Billing</span>
-              <span className="text-xs text-zinc-500">⌘B</span>
-            </DropdownMenuItem>
-
-            <DropdownMenuItem className="px-4 py-2 focus:bg-zinc-800 focus:text-white cursor-pointer flex justify-between">
-              <span>Command Menu</span>
-              <span className="text-xs text-zinc-500">⌘K</span>
-            </DropdownMenuItem>
-
-            <DropdownMenu>
-              <DropdownMenuTrigger className="px-4 py-2 flex justify-between items-center w-full text-zinc-300 hover:text-white hover:bg-zinc-800">
-                <span className="flex items-center gap-2">
-                  {theme === "light" && <Sun className="h-4 w-4" />}
-                  {theme === "dark" && <Moon className="h-4 w-4" />}
-                  {theme === "system" && <Monitor className="h-4 w-4" />}
-                  <span>Theme</span>
-                </span>
-                <span className="text-xs">
-                  {theme.charAt(0).toUpperCase() + theme.slice(1)}
-                </span>
-              </DropdownMenuTrigger>
-
-              <DropdownMenuContent className="w-40 bg-zinc-900 border-zinc-800 text-zinc-300">
-                <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
-                  <DropdownMenuRadioItem value="light">
-                    <div className="flex items-center gap-2">
-                      <Sun className="h-4 w-4" />
-                      <span>Light</span>
-                    </div>
-                  </DropdownMenuRadioItem>
-                  <DropdownMenuRadioItem value="dark">
-                    <div className="flex items-center gap-2">
-                      <Moon className="h-4 w-4" />
-                      <span>Dark</span>
-                    </div>
-                  </DropdownMenuRadioItem>
-                  <DropdownMenuRadioItem value="system">
-                    <div className="flex items-center gap-2">
-                      <Monitor className="h-4 w-4" />
-                      <span>System</span>
-                    </div>
-                  </DropdownMenuRadioItem>
-                </DropdownMenuRadioGroup>
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            <DropdownMenuSeparator className="bg-zinc-800" />
-
-            <DropdownMenuItem
-              onClick={handleLogOut}
-              className="px-4 py-2 focus:bg-zinc-800 focus:text-white cursor-pointer flex justify-between text-red-500 hover:text-red-400"
-            >
-              <div className="flex items-center gap-2">
-                <LogOut className="h-5 w-5" />
-                <span>Log out</span>
-              </div>
-              <span className="text-xs text-zinc-500">⌘L</span>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+            
+        <UserDropdownMenu />
       </SidebarFooter>
     </Sidebar>
   );
