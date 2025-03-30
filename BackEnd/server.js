@@ -20,6 +20,4 @@ app.use("/api", router);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.listen(port, () => {
-    console.log(`Server running at http://127.0.0.1:${port}`);
-});
+module.exports = app;
