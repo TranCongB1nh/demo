@@ -5,26 +5,6 @@ import Signup from "./Pages/Signup";
 import Dashboard from "./Pages/Dashboard";
 
 const App = () => {
-  // const navigate = useNavigate();
-  // const location = useLocation();
-
-  // useEffect(() => {
-  //   const localUser = localStorage.getItem("currentUser");
-  //   const sessionUser = sessionStorage.getItem("currentUser");
-
-  //   // Nếu không có người dùng đăng nhập, điều hướng đến trang Login
-  //   if (!localUser && !sessionUser) {
-  //     if (location.pathname !== "/login" && location.pathname !== "/register") {
-  //       navigate("/login", { replace: true });
-  //     }
-  //   } else {
-  //     // Nếu người dùng đã đăng nhập và đang ở trang login, điều hướng đến trang Todo
-  //     if (location.pathname === "/login" || location.pathname === "/register") {
-  //       navigate("/todo", { replace: true });
-  //     }
-  //   }
-  // }, [navigate, location]);
-
   return (
     <Routes>
       <Route path="/" element={<Login />} />
