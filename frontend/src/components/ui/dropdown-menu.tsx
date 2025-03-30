@@ -26,7 +26,10 @@ export function UserDropdownMenu() {
   // Hàm xử lý click bên ngoài dropdown
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     }
@@ -64,21 +67,48 @@ export function UserDropdownMenu() {
 
       {/* Dropdown Content */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-full bg-zinc-900 border border-zinc-800 rounded-md shadow-lg z-50 bottom-12">
-          <button className="flex items-center gap-2 w-full px-4 py-2 text-zinc-400 hover:bg-zinc-800 hover:text-white">
-            <User className="w-5 h-5" />
-            Profile
-          </button>
-          <button className="flex items-center gap-2 w-full px-4 py-2 text-zinc-400 hover:bg-zinc-800 hover:text-white">
-            <Settings className="w-5 h-5" />
-            Settings
-          </button>
+        <div className="absolute bottom-full right-0 mb-2 w-60 bg-zinc-900 border border-zinc-800 rounded-lg shadow-lg z-50">
+          {/* Header */}
+          <div className="px-4 py-3 border-b border-zinc-800">
+            <p className="text-white font-medium">{currentUser?.username}</p>
+            <p className="text-zinc-400 text-sm">{currentUser?.email}</p>
+          </div>
+
+          {/* Menu Items */}
+          <div className="py-2">
+            <button className="flex items-center gap-3 w-full px-4 py-2 text-zinc-400 hover:bg-zinc-800 hover:text-white">
+              <User className="w-5 h-5" />
+              Profile
+              <span className="ml-auto text-xs opacity-50">⇧⌘P</span>
+            </button>
+            <button className="flex items-center gap-3 w-full px-4 py-2 text-zinc-400 hover:bg-zinc-800 hover:text-white">
+              <Settings className="w-5 h-5" />
+              Billing
+              <span className="ml-auto text-xs opacity-50">⇧⌘B</span>
+            </button>
+            <button className="flex items-center gap-3 w-full px-4 py-2 text-zinc-400 hover:bg-zinc-800 hover:text-white">
+              ⌘K
+              <span className="ml-auto text-xs opacity-50">Command Menu</span>
+            </button>
+
+            {/* Theme */}
+            <div className="px-4 py-2 flex items-center justify-between">
+              <span className="text-zinc-400">Theme</span>
+              <select className="bg-zinc-800 text-white px-2 py-1 rounded-md">
+                <option>🌙 Dark</option>
+                <option>☀️ Light</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Log out */}
           <button
             onClick={handleLogOut}
-            className="flex items-center gap-2 w-full px-4 py-2 text-red-400 hover:bg-red-800 hover:text-white"
+            className="flex items-center gap-3 w-full px-4 py-2 text-red-400 hover:bg-red-800 hover:text-white border-t border-zinc-800"
           >
             <LogOut className="w-5 h-5" />
             Log Out
+            <span className="ml-auto text-xs opacity-50">⌘L</span>
           </button>
         </div>
       )}
