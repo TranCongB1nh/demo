@@ -1,38 +1,25 @@
-const createServer = require("http").createServer
-const cors = require("cors")
-const router = require("./router/index")
-const hostname = "127.0.0.1"
-const port = 5000
-const express = require("express")
-const { connectWithMongoClient, connectWithMongoose } = require("./mongodb")
+const express = require("express");
+const cors = require("cors");
+const { connectWithMongoClient, connectWithMongoose } = require("./mongodb");
+const router = require("./router/index");
+
 const app = express();
+const port = 5000;
 
 app.use(cors({
-    origin: 'http://localhost:5173',  
+    origin: 'http://localhost:5173',
     credentials: true
 }));
 
-connectWithMongoose()
+connectWithMongoose();
 
-const server = createServer((request, response) => {
-    response.setHeader('Access-Control-Allow-Origin','*')
-    response.setHeader(
-        'Access-Control-Allow-Methods',
-        'GET, POST, PATCH, DELETE, OPTIONS, PUT'
-    )
-    response.setHeader(
-        'Access-Control-Allow-Headers',
-        'Content-Type, Authorization'
-    )
+app.use(express.json());
 
-    if(request.method === 'OPTIONS') {
-        response.writeHead(204)
-        response.end()
-        return 
-    }
-    router.run(request, response)
-})
+app.use("/api", router);
 
-server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}`)
-})
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.listen(port, () => {
+    console.log(`Server running at http://127.0.0.1:${port}`);
+});

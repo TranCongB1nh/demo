@@ -1,8 +1,9 @@
-const userRouter = require("./userRouter")
-const router = {
-    run: function (request, response) {
-        userRouter.run(request, response)
-    }
-}
+const express = require("express");
+const userRouter = require("./userRouter");
 
-module.exports = router
+const router = express.Router(); // Tạo instance của express.Router()
+
+// Dùng userRouter
+router.use("/user", userRouter); // Điều này đảm bảo tất cả API có prefix "/user"
+
+module.exports = router;

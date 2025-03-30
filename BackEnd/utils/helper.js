@@ -43,22 +43,9 @@ async function writeJSONFile(path, data) {
     }
 }
 
-const getDataFromRequest = (request) => {
-    return new Promise((resolve, reject) => {
-        let body = ''
-        request.on('data', (chunk) => {
-            body += chunk.toString()
-        })
-        request.on('end', () => {
-            resolve(JSON.parse(body))
-        })
-    })
-}
-
 module.exports = {
     createBearerToken,
     verifyBearerToken,
     readJSONFile,
-    writeJSONFile, 
-    getDataFromRequest
+    writeJSONFile
 }

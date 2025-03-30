@@ -15,7 +15,7 @@ import {
   
   export const userLogin = (email, password) => async (dispatch) => {
     try {
-      const response = await axios.post('http://127.0.0.1:5000/sign-in', {
+      const response = await axios.post('http://127.0.0.1:5000/api/user/sign-in', {
         email,
         password,
       });
@@ -37,7 +37,7 @@ import {
 
   export const userRegister = (username, email, password) => async (dispatch) => {
     try {
-      const response = await axios.post("http://127.0.0.1:5000/sign-up", {
+      const response = await axios.post("http://127.0.0.1:5000/api/user/sign-up", {
         username,
         email,
         password,
